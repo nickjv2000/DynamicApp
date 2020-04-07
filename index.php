@@ -31,7 +31,7 @@
         <div class="detailButton"><i class="fas fa-search"></i> bekijk</div>
     <a class="item" href="character.html">
         <div class="left">
-            <img class="avatar" src="resources/images/b.jpg">
+            <img class="avatar" src="resources/images/bowser.jpg">
         </div>
         <div class="right">
             <h2>Bowser</h2>
@@ -44,6 +44,10 @@
             </div>
         </div>
         <div class="detailButton"><i class="fas fa-search"></i> bekijk</div>
+
+<?php
+    img();
+?>
 </div>
     <?php
         include('includes/footer.php');
