@@ -15,8 +15,7 @@
 </header>
 <div id="container">
     <?php
-        GetDatabaseConnection();
-        
+        GetDatabaseConnection();    
     ?>
     <a class="item" href="character.php">
         <div class="left">
