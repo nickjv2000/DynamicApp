@@ -14,12 +14,16 @@
     <h1>Alle  characters uit de database</h1>
 </header>
 <div id="container">
-    <a class="item" href="character.html">
+    <?php
+        GetDatabaseConnection();
+        
+    ?>
+    <a class="item" href="character.php">
         <div class="left">
             <img class="avatar" src="resources/images/conan.jpg">
         </div>
         <div class="right">
-            <h2>Bowser</h2>
+            <h2> <?php CallEcho(); ?> </h2>
             <div class="stats">
                 <ul class="fa-ul">
                     <li><span class="fa-li"><i class="fas fa-heart"></i></span> 10000</li>
@@ -29,12 +33,12 @@
             </div>
         </div>
         <div class="detailButton"><i class="fas fa-search"></i> bekijk</div>
-    <a class="item" href="character.html">
+    <a class="item" href="character.php">
         <div class="left">
             <img class="avatar" src="resources/images/bowser.jpg">
         </div>
         <div class="right">
-            <h2>Bowser</h2>
+            <h2><?php CallEcho(); ?></h2>
             <div class="stats">
                 <ul class="fa-ul">
                     <li><span class="fa-li"><i class="fas fa-heart"></i></span> 10000</li>
@@ -45,9 +49,7 @@
         </div>
         <div class="detailButton"><i class="fas fa-search"></i> bekijk</div>
 
-<?php
-    img();
-?>
+
 </div>
     <?php
         include('includes/footer.php');
