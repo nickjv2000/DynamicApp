@@ -9,46 +9,37 @@
 <body>
 <?php
     include('includes/connect.php');
+    GetDatabaseConnection();   
 ?>
 <header>
-    <h1>Alle  characters uit de database</h1>
+    <?php 
+    GetChars(); 
+    ?> 
+    </h1>
 </header>
 <div id="container">
-    <?php
-        GetDatabaseConnection();    
-    ?>
-    <a class="item" href="character.php">
+<?php 
+$conn = GetDatabaseConnection();
+$query = $conn->prepare("SELECT * FROM characters");
+$query->execute();
+$char = $query->fetchall();
+foreach($char as $count){
+?> 
+    <a class="item" href="character.php?id=<?= $count["id"] ?>">
         <div class="left">
-            <img class="avatar" src="resources/images/conan.jpg">
+            <img class="avatar" src="resources/images/<?= $count["avatar"] ?>">
         </div>
-        <div class="right">
-            <h2> <?php CallEcho(); ?> </h2>
-            <div class="stats">
-                <ul class="fa-ul">
-                    <li><span class="fa-li"><i class="fas fa-heart"></i></span> 10000</li>
-                    <li><span class="fa-li"><i class="fas fa-fist-raised"></i></span> 400</li>
-                    <li><span class="fa-li"><i class="fas fa-shield-alt"></i></span> 100</li>
-                </ul>
-            </div>
+    <div class="right">
+        <h2><?php echo $count["name"]; ?></h2>
+        <div class="stats">
+            <ul class="fa-ul">
+                <li><span class="fa-li"><i class="fas fa-heart"></i></span><?php echo $count["health"]; ?></li>
+                <li><span class="fa-li"><i class="fas fa-fist-raised"></i></span><?php echo $count["attack"]; ?></li>
+                <li><span class="fa-li"><i class="fas fa-shield-alt"></i></span><?php echo $count["defense"]; ?></li>
+           </ul>
         </div>
-        <div class="detailButton"><i class="fas fa-search"></i> bekijk</div>
-    <a class="item" href="character.php">
-        <div class="left">
-            <img class="avatar" src="resources/images/bowser.jpg">
-        </div>
-        <div class="right">
-            <h2><?php CallEcho(); ?></h2>
-            <div class="stats">
-                <ul class="fa-ul">
-                    <li><span class="fa-li"><i class="fas fa-heart"></i></span> 10000</li>
-                    <li><span class="fa-li"><i class="fas fa-fist-raised"></i></span> 400</li>
-                    <li><span class="fa-li"><i class="fas fa-shield-alt"></i></span> 100</li>
-                </ul>
-            </div>
-        </div>
-        <div class="detailButton"><i class="fas fa-search"></i> bekijk</div>
-
-
+    </div>
+    <?php } ?>       
 </div>
     <?php
         include('includes/footer.php');

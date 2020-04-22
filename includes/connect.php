@@ -17,23 +17,22 @@ function GetDatabaseConnection(){
 	}
 }
 
+
 function GetChars(){
 	$conn = GetDatabaseConnection();
-	$query = $conn->prepare("SELECT * FROM characters");
- 	$query->execute();
-
- 	return $query->fetchall();
+	$query = $conn->prepare("SELECT count('id') AS total FROM characters");
+	$query->execute();
+    $result = $query->fetchall();
+    foreach ($result as $count) {
+        echo "<h1>alle " . $count['total'] . " characters uit de database</h1>"; 
+    }
 }
 
-function CallEcho(){
+function GetGameId($id){
 	$conn = GetDatabaseConnection();
-	$sql = "SELECT name FROM characters WHERE id='1'";
-	$result = GetChars(); 
-	$result = $conn->query($sql);
-
-    foreach ($result as $name) {	
-        echo $name['name'] . "<br>";  
-    }
-
+    $query = $conn->prepare("SELECT * FROM characters WHERE id = :id");
+    $query->bindParam(":id", $id);
+    $query->execute();
+    return $query->fetch();
 }
 ?>
